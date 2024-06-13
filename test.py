@@ -27,5 +27,3 @@ if persona2.es_mayor_de_edad():
     print(f"{persona2.nombre} es mayor de edad.")
 else:
     print(f"{persona2.nombre} no es mayor de edad.")
-    
-    asdasd
