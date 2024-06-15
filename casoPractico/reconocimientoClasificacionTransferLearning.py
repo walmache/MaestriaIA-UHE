@@ -6,6 +6,7 @@ import tensorflow as tf
 from tensorflow.keras.applications import MobileNetV2
 from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
 from tensorflow.keras.models import Model
+import matplotlib.pyplot as plt
 
 # Tamaño de imagen para el modelo pre-entrenado
 IMG_SIZE = 224
@@ -21,15 +22,16 @@ def load_and_preprocess_images(data_dir):
         for img_file in os.listdir(class_dir):
             img_path = os.path.join(class_dir, img_file)
             img = cv2.imread(img_path)  # Cargar la imagen
-            img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))  # Redimensionar la imagen
-            img = img / 255.0  # Normalizar la imagen
-            images.append(img)
-            labels.append(label_map[label])
+            if img is not None:
+                img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))  # Redimensionar la imagen
+                img = img / 255.0  # Normalizar la imagen
+                images.append(img)
+                labels.append(label_map[label])
             
     return np.array(images), np.array(labels), label_map  # Devolver las imágenes, etiquetas y el mapa de etiquetas
 
 # Ruta del directorio de datos
-data_dir = 'path/to/dataset'
+data_dir = 'Data'
 
 # Cargar y preprocesar las imágenes
 images, labels, label_map = load_and_preprocess_images(data_dir)
@@ -78,6 +80,10 @@ loss, accuracy = model.evaluate(X_test, y_test)
 print(f'Precisión en el conjunto de prueba: {accuracy * 100:.2f}%')
 
 # Ejemplo de uso de la función de detección y reconocimiento
-image_path = 'path/to/test/image.jpg'
+image_path = 'imagenGato.jpg'
 detected_label = detect_and_recognize(image_path, model, label_map)
 print(f'Objeto detectado: {detected_label}')
+
+# Mostramos la imagen con la etiqueta en el notebook
+img = cv2.imread(image_path)
+plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)) 
