@@ -15,8 +15,8 @@ import pandas as pd
 ########## Importando la data ##########
 
 #Importar los datos de los archivos .csv almacenados
-df_test = pd.read_csv('titanic_test.csv')
-df_train = pd.read_csv('titanic_train.csv')
+df_test = pd.read_csv('data/titanic_test.csv')
+df_train = pd.read_csv('data/titanic_train.csv')
 
 print(df_test.head())
 print(df_train.head())
@@ -98,4 +98,4 @@ print(df_train.head())
 # Guardar el DataFrame en un archivo CSV
 # El parámetro index=False evita que los índices del DataFrame
 # se guarden como una columna en el archivo CSV
-df_train.to_csv('train_procesado.csv', index=False, sep=',', encoding='utf-8')
+df_train.to_csv('data/train_procesado.csv', index=False, sep=',', encoding='utf-8')
