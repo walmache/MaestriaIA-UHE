@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Cargar el conjunto de datos del Titanic
-titanic_df = pd.read_csv('titanic.csv')
+titanic_df = pd.read_csv('data/titanic.csv')
 # titanic_df = sns.load_dataset("titanic")
 
 
